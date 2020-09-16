@@ -1,3 +1,5 @@
+# coding=utf-8
+
 import re
 import urlparse
 import urllib2
@@ -132,4 +134,5 @@ def get_links(html):
 
 if __name__ == '__main__':
     link_crawler('http://example.webscraping.com', '/(index|view)', delay=0, num_retries=1, user_agent='BadCrawler')
-    link_crawler('http://example.webscraping.com', '/(index|view)', delay=0, num_retries=1, max_depth=1, user_agent='GoodCrawler')
+    # 使用正则(.*)/(index|view)可以正常匹配。原始版本有误？
+    link_crawler('http://example.webscraping.com', '(.*)/(index|view)', delay=0, num_retries=1, max_depth=1, user_agent='GoodCrawler')

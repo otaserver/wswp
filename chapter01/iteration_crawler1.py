@@ -6,7 +6,9 @@ from common import download
 
 
 def iteration():
+    # 使用了itertools来生成序列。
     for page in itertools.count(1):
+        # 使用了format函数。
         url = 'http://example.webscraping.com/view/-{}'.format(page)
         html = download(url)
         if html is None:

@@ -1,7 +1,8 @@
+# coding=utf-8
+
 import re
 import urlparse
 from common import download
-
 
 def link_crawler(seed_url, link_regex):
     """Crawl from the given seed URL following links matched by link_regex
@@ -14,11 +15,12 @@ def link_crawler(seed_url, link_regex):
         for link in get_links(html):
             # check if link matches expected regex
             if re.match(link_regex, link):
-                # form absolute link
+                # form absolute link,使用urlparse转换为绝对路径。
                 link = urlparse.urljoin(seed_url, link)
                 # check if have already seen this link
                 if link not in seen:
                     seen.add(link)
+                    print(link+" add to crawl_queue")
                     crawl_queue.append(link)
 
 
