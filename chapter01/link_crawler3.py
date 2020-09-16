@@ -37,7 +37,9 @@ def link_crawler(seed_url, link_regex=None, delay=5, max_depth=-1, max_urls=-1, 
                 # can still crawl further
                 if link_regex:
                     # filter for links matching our regular expression
-                    links.extend(link for link in get_links(html) if re.match(link_regex, link))
+                    # extend()为在列表末尾一次性追加另一个序列中的多个值，
+                    # 使用的是for in if表达式。get_links()可返回包含链接的列表，然后用正则表达式过滤这个列表，匹配条件的使用extend()函数加在links列表后面。
+                    links.extend(link for link in get_links(html) if re.search(link_regex, link))
 
                 for link in links:
                     link = normalize(seed_url, link)
@@ -134,5 +136,6 @@ def get_links(html):
 
 if __name__ == '__main__':
     link_crawler('http://example.webscraping.com', '/(index|view)', delay=0, num_retries=1, user_agent='BadCrawler')
-    # 使用正则(.*)/(index|view)可以正常匹配。原始版本有误？
-    link_crawler('http://example.webscraping.com', '(.*)/(index|view)', delay=0, num_retries=1, max_depth=1, user_agent='GoodCrawler')
+    # 使用正则(.*)/(index|view)，需要匹配正则表达式为 re.match(link_regex, link))
+    # 使用正则'/(index|view)'，需要匹配正则表达式为：re.search(link_regex, link))
+    link_crawler('http://example.webscraping.com', '/(index|view)', delay=0, num_retries=1, max_depth=1, user_agent='GoodCrawler')
