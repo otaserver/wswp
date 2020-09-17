@@ -1,0 +1,4 @@
+//for ch2
+pip install beautifulsoup4
+pip install lxml
+pip install cssselect

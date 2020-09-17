@@ -24,4 +24,5 @@ class ScrapeCallback:
 
 
 if __name__ == '__main__':
-    link_crawler('http://example.webscraping.com/', '/(index|view)', scrape_callback=ScrapeCallback())
+    # 回调的是类。写法不同。
+    link_crawler('http://example.webscraping.com/', '(.*)/(index|view)', scrape_callback=ScrapeCallback())

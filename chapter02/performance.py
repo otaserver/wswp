@@ -35,6 +35,9 @@ def lxml_scraper(html):
 
 
 def main():
+    """
+    通过定义元组实现了方法的动态调用。
+    """
     times = {}
     html = urllib2.urlopen('http://example.webscraping.com/view/United-Kingdom-239').read()
     NUM_ITERATIONS = 1000 # number of times to test each scraper
